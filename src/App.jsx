@@ -25,8 +25,6 @@ function App() {
           <Route path="attendance" element={<AttendanceChecker />} />
           <Route path="electricity" element={<ElectricityBill />} />
         </Route>
-
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
