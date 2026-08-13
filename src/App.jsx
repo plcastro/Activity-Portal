@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useEffect } from "react";
 import "./App.css";
-import { Home } from "./pages/Home";
-import { Login } from "./pages/Login";
-import { PasswordChecker } from "./pages/PasswordChecker";
-import { GradeEvaluation } from "./pages/GradeEvaluation";
-import { AttendanceChecker } from "./pages/AttendanceChecker";
-import { ElectricityBill } from "./pages/ElectricityBill";
+import RootLayout from "./layout/RootLayout";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import PasswordChecker from "./pages/PasswordChecker";
+import GradeEvaluation from "./pages/GradeEvaluation";
+import AttendanceChecker from "./pages/AttendanceChecker";
+import ElectricityBill from "./pages/ElectricityBill";
 
 function App() {
   return (
@@ -14,11 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/home" replace />} />
 
-        <Route path="/home" element={<Home />}>
-          <Route index element={<Login />} />
-        </Route>
-
-        <Route path="/" element={<Login />}>
+        <Route path="/" element={<RootLayout />}>
+          <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="passChecker" element={<PasswordChecker />} />
           <Route path="gradeEval" element={<GradeEvaluation />} />
