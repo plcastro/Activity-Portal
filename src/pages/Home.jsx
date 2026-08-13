@@ -18,19 +18,15 @@ export default function Home() {
         {/* <Card
           title="Login Authentication"
           subtitle="Validate a username and password against sample credentials and manage login/logout state"
-        >
-          <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Open Activity
-          </button>
-        </Card> 
+          page={"/login"}
+        />
+        
         <Card
           title="Student Grade Evaluation"
           subtitle="Enter a student's score and get an automatic remark based on grade ranges."
-        >
-          <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Open Activity
-          </button>
-        </Card>*/}
+           page={"/gradeEval"}
+        />
+        */}
         <Card
           num={3}
           title="Password Strength Checker"

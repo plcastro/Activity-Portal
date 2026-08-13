@@ -123,7 +123,7 @@ function Navbar() {
               Home
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               to="/login"
               className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs font-semibold transition hover:bg-blue-100 hover:text-blue-500 lg:px-4 lg:text-sm ${
@@ -148,7 +148,7 @@ function Navbar() {
             >
               Activity 2
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link
               to="/passChecker"
@@ -159,7 +159,7 @@ function Navbar() {
               }`}
               onClick={() => setIsOpen(false)}
             >
-              Activity 3
+              Activity 3 - Password Checker
             </Link>
           </li>
           <li>
@@ -172,7 +172,7 @@ function Navbar() {
               }`}
               onClick={() => setIsOpen(false)}
             >
-              Activity 4
+              Activity 4 - Electricity Bill
             </Link>
           </li>
           <li>
@@ -185,7 +185,7 @@ function Navbar() {
               }`}
               onClick={() => setIsOpen(false)}
             >
-              Activity 5
+              Activity 5 - Attendance Checker
             </Link>
           </li>
         </ul>
