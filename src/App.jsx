@@ -16,9 +16,9 @@ function App() {
 
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />
-          <Route path="login" element={<Login />} />
+          {/* <Route path="login" element={<Login />} /> */}
           <Route path="passChecker" element={<PasswordChecker />} />
-          <Route path="gradeEval" element={<GradeEvaluation />} />
+          {/* <Route path="gradeEval" element={<GradeEvaluation />} /> */}
           <Route path="attendance" element={<AttendanceChecker />} />
           <Route path="electricity" element={<ElectricityBill />} />
         </Route>

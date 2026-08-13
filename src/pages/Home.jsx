@@ -15,14 +15,14 @@ export default function Home() {
       </header>
 
       <main className="grid grid-cols-1 md:grid-cols-3 mx-auto justify-around gap-5 py-8 px-12">
-        <Card
+        {/* <Card
           title="Login Authentication"
           subtitle="Validate a username and password against sample credentials and manage login/logout state"
         >
           <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Open Activity
           </button>
-        </Card>
+        </Card> 
         <Card
           title="Student Grade Evaluation"
           subtitle="Enter a student's score and get an automatic remark based on grade ranges."
@@ -30,7 +30,7 @@ export default function Home() {
           <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Open Activity
           </button>
-        </Card>
+        </Card>*/}
         <Card
           title="Password Strength Checker"
           subtitle="Check password length and receive live feedback on how strong it is."
@@ -48,7 +48,7 @@ export default function Home() {
           </button>
         </Card>
         <Card
-          title="EmployeeAttendance Tracker"
+          title="Employee Attendance Tracker"
           subtitle="Check an employee's time-in and determine whether they are on time, late, or very late."
         >
           <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
