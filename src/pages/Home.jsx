@@ -32,29 +32,24 @@ export default function Home() {
           </button>
         </Card>*/}
         <Card
+          num={3}
           title="Password Strength Checker"
           subtitle="Check password length and receive live feedback on how strong it is."
-        >
-          <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Open Activity
-          </button>
-        </Card>
+          page={"/passChecker"}
+        />
         <Card
+          num={4}
           title="Electricity Bill Calculator"
           subtitle="Calculate a customer's electricity bill based on kWh consumption and tiered rates."
-        >
-          <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Open Activity
-          </button>
-        </Card>
+          page={"/electricity"}
+        />
+
         <Card
+          num={5}
           title="Employee Attendance Tracker"
           subtitle="Check an employee's time-in and determine whether they are on time, late, or very late."
-        >
-          <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Open Activity
-          </button>
-        </Card>
+          page={"/attendance"}
+        />
       </main>
     </div>
   );
