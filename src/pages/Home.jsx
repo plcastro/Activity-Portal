@@ -4,17 +4,17 @@ import Card from "../components/Card";
 export default function Home() {
   return (
     <div className="mx-auto w-full max-h-screen py-8">
-      <header className="flex flex-col justify-center items-center p-1 gap-12">
-        <h1 className="text-5xl font-black text-center">
+      <header className="flex flex-col justify-center items-center p-1 gap-4">
+        <h1 className="text-2xl md:text-5xl font-black text-center uppercase text-teal-400 tracking-wide leading-tight">
           React Activity Portal
         </h1>
-        <p className="text-center">
-          Five interactive React activities demonstrating state, events,
+        <p className="text-center text-gray-400">
+          Three interactive React activities demonstrating state, events,
           conditional logic, validation, and calculations.
         </p>
       </header>
 
-      <main className="grid grid-cols-1 md:grid-cols-3 mx-auto justify-around gap-5 py-8 px-12">
+      <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-auto justify-around gap-5 py-4 px-8 md:py-10 md:px-6">
         {/* <Card
           title="Login Authentication"
           subtitle="Validate a username and password against sample credentials and manage login/logout state"

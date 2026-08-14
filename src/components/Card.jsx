@@ -4,15 +4,15 @@ import "../App.css";
 
 function Card({ num, title, subtitle, page }) {
   return (
-    <div className="flex flex-col justify-between w-full h-full p-5 gap-2 bg-white rounded-lg shadow-md">
-      <div className="flex text-center justify-center items-center  bg-blue-100 border-blue-700 rounded text-blue-700 size-10">
+    <div className="flex flex-col justify-between w-full p-4 sm:p-5 gap-2 bg-gray-800 rounded-lg border-t-4 border-teal-500 shadow-md">
+      <div className="flex text-center justify-center items-center rounded  font-black bg-teal-200/20 border-teal-700 border text-teal-400 size-10">
         {num}
       </div>
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-gray-600 mb-4">{subtitle}</p>
+      <h3 className="text-xl text-white font-bold mb-2">{title}</h3>
+      <p className="text-gray-300 mb-4">{subtitle}</p>
       <Link
         to={page}
-        className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center"
+        className="w-full font-bold py-2 px-4 rounded text-center bg-teal-500 text-gray-900 hover:bg-teal-600 hover:text-white transition"
       >
         Open Activity
       </Link>
