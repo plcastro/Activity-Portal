@@ -55,6 +55,12 @@ export default function AttendanceChecker() {
       return;
     }
 
+    if (timeIn < 0 || timeIn > 24) {
+      setError("Invalid time. Please enter between 0 and 24");
+      setResult(false);
+      return;
+    }
+
     const time = Number(timeIn);
 
     setError("");
