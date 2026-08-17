@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import PunchClockTwoToneIcon from "@mui/icons-material/PunchClockTwoTone";
 import "../App.css";
 
 function Navbar() {
@@ -11,17 +10,18 @@ function Navbar() {
     <nav className="sticky top-0 z-50 border-b border-slate-700 bg-gray-900/90 shadow-sm backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between py-10 px-6">
         <p className="whitespace-nowrap text-base font-bold text-white lg:text-xl ">
-          React Activity Portal
+          <span className="p-2 rounded bg-teal-500 text-gray-900 ">React</span>{" "}
+          Activity Portal
         </p>
 
-        <ul className="hidden items-center gap-4 md:flex border-gray-700 border rounded-lg p-2">
+        <ul className="hidden items-center gap-4 md:flex border-gray-700 text-xs font-bold border rounded-lg p-2 ">
           <li>
             <Link
               to="/"
-              className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs font-semibold transition hover:bg-gray-800 hover:text-white lg:px-4  ${
+              className={`block whitespace-nowrap rounded-md px-2 py-2 transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
                 location.pathname === "/"
                   ? "bg-teal-500 text-gray-900"
-                  : "text-slate-600"
+                  : "text-slate-400"
               }`}
             >
               Home
@@ -30,10 +30,10 @@ function Navbar() {
           {/* <li>
             <Link
               to="/login"
-              className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs font-semibold transition hover:bg-gray-800 hover:text-white lg:px-4  ${
+              className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
                 location.pathname === "/login"
                    ? "bg-teal-500 text-gray-900"
-                  : "text-slate-600"
+                  : "text-slate-400"
               }`}
             >
               Activity 1
@@ -42,10 +42,10 @@ function Navbar() {
           <li>
             <Link
               to="/gradeEval"
-              className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs font-semibold transition hover:bg-gray-800 hover:text-white lg:px-4  ${
+              className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
                 location.pathname === "/gradeEval"
                    ? "bg-teal-500 text-gray-900"
-                  : "text-slate-600"
+                  : "text-slate-400"
               }`}
             >
               Activity 2
@@ -54,10 +54,10 @@ function Navbar() {
           <li>
             <Link
               to="/passChecker"
-              className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs font-semibold transition hover:bg-gray-800 hover:text-white lg:px-4  ${
+              className={`block whitespace-nowrap rounded-md px-2 py-2 transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
                 location.pathname === "/passChecker"
                   ? "bg-teal-500 text-gray-900"
-                  : "text-slate-600"
+                  : "text-slate-400"
               }`}
             >
               Activity 3
@@ -66,10 +66,10 @@ function Navbar() {
           <li>
             <Link
               to="/electricity"
-              className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs font-semibold transition hover:bg-gray-800 hover:text-white lg:px-4  ${
+              className={`block whitespace-nowrap rounded-md px-2 py-2 transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
                 location.pathname === "/electricity"
                   ? "bg-teal-500 text-gray-900"
-                  : "text-slate-600"
+                  : "text-slate-400"
               }`}
             >
               Activity 4
@@ -78,10 +78,10 @@ function Navbar() {
           <li>
             <Link
               to="/attendance"
-              className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs font-semibold transition hover:bg-gray-800 hover:text-white lg:px-4  ${
+              className={`block whitespace-nowrap rounded-md px-2 py-2 transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
                 location.pathname === "/attendance"
                   ? "bg-teal-500 text-gray-900"
-                  : "text-slate-600"
+                  : "text-slate-400"
               }`}
             >
               Activity 5
@@ -91,7 +91,7 @@ function Navbar() {
 
         <button
           type="button"
-          className="rounded-md px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-gray-800 hover:text-white md:hidden"
+          className="rounded-md px-3 py-2 text-sm text-slate-400 transition hover:bg-gray-800 hover:text-teal-400 md:hidden"
           onClick={() => setIsOpen(!isOpen)}
         >
           <svg
@@ -114,10 +114,10 @@ function Navbar() {
           <li>
             <Link
               to="/"
-              className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs font-semibold transition hover:bg-gray-800 hover:text-white lg:px-4  ${
+              className={`block whitespace-nowrap rounded-md px-2 py-2 transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
                 location.pathname === "/"
                   ? "bg-teal-500 text-gray-900"
-                  : "text-slate-600"
+                  : "text-slate-400"
               }`}
               onClick={() => setIsOpen(false)}
             >
@@ -127,10 +127,10 @@ function Navbar() {
           {/* <li>
             <Link
               to="/login"
-              className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs font-semibold transition hover:bg-gray-800 hover:text-white lg:px-4  ${
+              className={`block whitespace-nowrap rounded-md px-2 py-2 transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
                 location.pathname === "/login"
                    ? "bg-teal-500 text-gray-900"
-                  : "text-slate-600"
+                  : "text-slate-400"
               }`}
               onClick={() => setIsOpen(false)}
             >
@@ -140,10 +140,10 @@ function Navbar() {
           <li>
             <Link
               to="/gradeEval"
-              className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs font-semibold transition hover:bg-gray-800 hover:text-white lg:px-4  ${
+              className={`block whitespace-nowrap rounded-md px-2 py-2 transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
                 location.pathname === "/gradeEval"
                    ? "bg-teal-500 text-gray-900"
-                  : "text-slate-600"
+                  : "text-slate-400"
               }`}
               onClick={() => setIsOpen(false)}
             >
@@ -153,10 +153,10 @@ function Navbar() {
           <li>
             <Link
               to="/passChecker"
-              className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs font-semibold transition hover:bg-gray-800 hover:text-white lg:px-4  ${
+              className={`block whitespace-nowrap rounded-md px-2 py-2 transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
                 location.pathname === "/passChecker"
                   ? "bg-teal-500 text-gray-900"
-                  : "text-slate-600"
+                  : "text-slate-400"
               }`}
               onClick={() => setIsOpen(false)}
             >
@@ -166,10 +166,10 @@ function Navbar() {
           <li>
             <Link
               to="/electricity"
-              className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs font-semibold transition hover:bg-gray-800 hover:text-white lg:px-4  ${
+              className={`block whitespace-nowrap rounded-md px-2 py-2 transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
                 location.pathname === "/electricity"
                   ? "bg-teal-500 text-gray-900"
-                  : "text-slate-600"
+                  : "text-slate-400"
               }`}
               onClick={() => setIsOpen(false)}
             >
@@ -179,19 +179,13 @@ function Navbar() {
           <li>
             <Link
               to="/attendance"
-              className={`flex items-center whitespace-nowrap rounded-md px-2 py-2 text-xs font-semibold transition hover:bg-gray-800 hover:text-white lg:px-4  ${
+              className={`flex items-center whitespace-nowrap rounded-md px-2 py-2 transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
                 location.pathname === "/attendance"
                   ? "bg-teal-500 text-gray-900"
-                  : "text-slate-600"
+                  : "text-slate-400"
               }`}
               onClick={() => setIsOpen(false)}
             >
-              <PunchClockTwoToneIcon
-                className={` mr-1 ${
-                  location.pathname === "/attendance" ? "" : "text-slate-600"
-                }`}
-                sx={{ fontSize: 24 }}
-              />
               Activity 5 - Attendance Checker
             </Link>
           </li>

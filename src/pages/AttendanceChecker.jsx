@@ -100,7 +100,7 @@ export default function AttendanceChecker() {
     setResult(true);
   };
 
-  const handleReset = () => {
+  function handleReset() {
     setEmpName("");
     setTimeIn("");
     setTimeConvert("");
@@ -108,98 +108,97 @@ export default function AttendanceChecker() {
     setMessage("");
     setError("");
     setResult(false);
-  };
+  }
 
   return (
-    <div className="mt-10 p-4 md:p-12 h-full flex flex-col justify-between mx-auto w-full max-w-6xl sm:p-8 gap-4 rounded-xl sm:rounded-5xl bg-gray-800 border-t-teal-400 border-t-4">
-      <PunchClockTwoToneIcon
-        className="text-teal-400 bg-teal-900 border border-teal-400 p-5 rounded-full mx-auto"
-        sx={{ fontSize: 80 }}
-      />
+    <div className="md:p-0 p-2">
+      <div className="mt-10 p-4 sm:p-8 md:p-12 h-full flex flex-col justify-between mx-auto w-full max-w-6xl gap-4 rounded-xl sm:rounded-5xl bg-gray-800 border-t-teal-400 border-t-4">
+        <PunchClockTwoToneIcon
+          className="text-teal-400 bg-teal-900 border border-teal-400 p-5 rounded-full mx-auto"
+          sx={{ fontSize: 80 }}
+        />
 
-      <h1 className="text-2xl md:text-3xl text-center font-bold text-white">
-        Employee Attendance Tracker
-      </h1>
+        <h1 className="text-2xl md:text-3xl text-center font-bold text-white">
+          Employee Attendance Tracker
+        </h1>
 
-      <p className="text-gray-400">
-        Enter employee details to check attendance
-      </p>
+        <p className="text-gray-400">
+          Enter employee details to check attendance
+        </p>
 
-      <label htmlFor="empName" className="flex text-white font-semibold">
-        <Person2OutlinedIcon />
-        Employee Name
-      </label>
+        <label htmlFor="empName" className="flex text-white font-semibold">
+          <Person2OutlinedIcon />
+          Employee Name
+        </label>
 
-      <input
-        id="empName"
-        type="text"
-        placeholder="Enter employee name"
-        className="h-12 text-white border border-gray-500 rounded-md px-3
+        <input
+          id="empName"
+          type="text"
+          placeholder="Enter employee name"
+          className="h-12 text-white border border-gray-500 rounded-md px-3
              focus:border-2  focus:border-teal-400 focus:outline-none transition-all duration-200 ease-in"
-        value={empName}
-        onChange={(e) => setEmpName(e.target.value)}
-      />
+          value={empName}
+          onChange={(e) => setEmpName(e.target.value)}
+        />
 
-      <label htmlFor="timeIn" className="flex text-white font-semibold">
-        <PunchClockTwoToneIcon />
-        Time In
-      </label>
+        <label htmlFor="timeIn" className="flex text-white font-semibold">
+          <PunchClockTwoToneIcon />
+          Time In
+        </label>
 
-      <input
-        id="timeIn"
-        type="number"
-        step="0.01"
-        placeholder="E.g., 8.5 = 8:30 AM"
-        className="h-12 text-white border border-gray-500 rounded-md px-3
-             focus:border-2
-  focus:border-teal-400
-  focus:outline-none  transition-all duration-200 ease-in"
-        value={timeIn}
-        onChange={(e) => setTimeIn(e.target.value)}
-      />
+        <input
+          id="timeIn"
+          type="number"
+          step="0.01"
+          placeholder="E.g., 8.5 = 8:30 AM"
+          className="h-12 text-white border border-gray-500 rounded-md px-3 focus:border-2  focus:border-teal-400  focus:outline-none  transition-all duration-200 ease-in"
+          value={timeIn}
+          onChange={(e) => setTimeIn(e.target.value)}
+        />
 
-      <div className="flex flex-col md:flex-row justify-evenly items-center gap-2">
-        <button
-          onClick={getAttendance}
-          className="flex justify-center items-center gap-2 w-full h-12 whitespace-nowrap rounded-md px-2 py-2 text-md lg:px-4 bg-teal-400 text-gray-900 text-sm md:text-md hover:text-white hover:bg-teal-800 shadow-md shadow-teal-900 transition ease-linear"
-        >
-          <CheckCircleOutlinedIcon />
-          Check Attendance
-        </button>
+        <div className="flex flex-col md:flex-row justify-evenly items-center gap-2">
+          <button
+            onClick={getAttendance}
+            className="flex justify-center items-center gap-2 w-full h-12 whitespace-nowrap rounded-md px-2 py-2 text-md lg:px-4 bg-teal-400 text-gray-900 text-sm md:text-md hover:text-white hover:bg-teal-800 shadow-md shadow-teal-900 transition ease-linear"
+          >
+            <CheckCircleOutlinedIcon />
+            Check Attendance
+          </button>
 
-        <button
-          type="button"
-          onClick={handleReset}
-          className="flex justify-center items-center gap-2 w-full h-12 whitespace-nowrap rounded-md px-2 py-2 text-md lg:px-4 text-white border-gray-500 border hover:text-red-400 hover:border-red-400 hover:bg-red-700/10 shadow-md hover:shadow-red-900 transition ease-linear"
-        >
-          <RestartAltOutlinedIcon />
-          Reset
-        </button>
+          <button
+            type="reset"
+            onClick={handleReset}
+            className="flex justify-center items-center gap-2 w-full h-12 whitespace-nowrap rounded-md px-2 py-2 text-md lg:px-4 text-white border-gray-500 border hover:text-red-400 hover:border-red-400 hover:bg-red-700/10 shadow-md hover:shadow-red-900 transition ease-linear"
+          >
+            <RestartAltOutlinedIcon />
+            Reset
+          </button>
+        </div>
+
+        {error && (
+          <div className="mb-5 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-400">
+            {error}
+          </div>
+        )}
+
+        {result && (
+          <div
+            className={`flex flex-col gap-3 rounded-lg border ${alertStyle.borderColor} ${alertStyle.bgColor} ${alertStyle.textColor} p-3`}
+          >
+            <p>
+              Employee Name: <strong>{resultName}</strong>
+            </p>
+            <p>
+              Time In: <strong>{timeConvert}</strong>
+            </p>
+
+            <p>Attendance Status</p>
+            <h3 className="text-2xl font-black tracking-wide">{status}</h3>
+
+            <p>{message}</p>
+          </div>
+        )}
       </div>
-
-      {error && (
-        <div className="mb-5 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-400">
-          {error}
-        </div>
-      )}
-
-      {result && (
-        <div
-          className={`flex flex-col gap-3 rounded-lg border ${alertStyle.borderColor} ${alertStyle.bgColor} ${alertStyle.textColor} p-3`}
-        >
-          <p>
-            Employee Name: <strong>{resultName}</strong>
-          </p>
-          <p>
-            Time In: <strong>{timeConvert}</strong>
-          </p>
-
-          <p>Attendance Status</p>
-          <h3 className="text-2xl font-black tracking-wide">{status}</h3>
-
-          <p>{message}</p>
-        </div>
-      )}
     </div>
   );
 }
