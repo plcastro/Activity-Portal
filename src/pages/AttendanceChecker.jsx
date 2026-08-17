@@ -9,18 +9,18 @@ import "../App.css";
 export default function AttendanceChecker() {
   //no functions yet
   return (
-    <div className="flex flex-col justify-center items-center gap-6 max-w-xl max-h-full mx-auto p-4">
-      <PunchClockTwoToneIcon
-        className="text-teal-400 bg-teal-900 border border-teal-400 p-5 rounded-full "
-        sx={{ fontSize: 80 }}
-      />
-      <h1 className="text-2xl md:text-4xl text-center font-bold text-white ">
-        Employee Attendance Tracker
-      </h1>
-      <p className="text-gray-400">
-        Enter employee details to check attendance
-      </p>
+    <div className="mt-10 p-4 md:p-0">
       <form className="flex flex-col justify-between mx-auto w-full max-w-6xl p-6 sm:p-8 gap-4 rounded-xl sm:rounded-5xl bg-gray-800 border-t-teal-400 border-t-4">
+        <PunchClockTwoToneIcon
+          className="text-teal-400 bg-teal-900 border border-teal-400 p-5 rounded-full mx-auto"
+          sx={{ fontSize: 80 }}
+        />
+        <h1 className="text-2xl md:text-3xl text-center font-bold text-white ">
+          Employee Attendance Tracker
+        </h1>
+        <p className="text-gray-400">
+          Enter employee details to check attendance
+        </p>
         <label htmlFor="empName" className="flex text-white font-semibold">
           <Person2OutlinedIcon />
           Employee Name
