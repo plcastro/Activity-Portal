@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import PunchClockTwoToneIcon from "@mui/icons-material/PunchClockTwoTone";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
@@ -6,188 +6,200 @@ import RestartAltOutlinedIcon from "@mui/icons-material/RestartAltOutlined";
 import "../App.css";
 
 export default function AttendanceChecker() {
-  const initialState = {
-    name: "",
-    timeIn: "",
-    result: "",
-    bg: "",
-    color: "",
-    status: "",
-    submittedName: "",
-    submittedTimeIn: "",
-  };
+  const [empName, setEmpName] = useState("");
+  const [timeIn, setTimeIn] = useState("");
+  const [timeConvert, setTimeConvert] = useState("");
+  const [status, setStatus] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [resultName, setResultName] = useState("");
+  const [result, setResult] = useState(false);
+  const [alertStyle, setAlertStyle] = useState({
+    textColor: "text-green-500",
+    bgColor: "bg-green-800/20",
+    borderColor: "border-green-500",
+  });
 
-  const [attendanceDetails, setAttendanceDetails] = useState(initialState);
-  const [errorMessage, setErrorMessage] = useState("");
+  const convertTime = (time) => {
+    let hours = Math.floor(time);
+    let minutes = Math.round((time - hours) * 60);
 
-  const handleChange = (key, value) => {
-    setAttendanceDetails((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
-  };
-
-  const formatTimeIn = (value) => {
-    const decimalTime = Number(value);
-    const totalMinutes = Math.round(decimalTime * 60);
-    const hours = Math.floor(totalMinutes / 60) % 24;
-    const minutes = totalMinutes % 60;
-    const displayHours = hours % 12 || 12;
-    const period = hours < 12 ? "AM" : "PM";
-
-    return `${displayHours}:${String(minutes).padStart(2, "0")} ${period}`;
-  };
-
-  const getResult = (e) => {
-    e.preventDefault();
-
-    const { name, timeIn } = attendanceDetails;
-
-    if (!name.trim()) {
-      return setErrorMessage("Please enter employee name.");
+    if (hours === 24) {
+      hours = 0;
     }
 
-    if (timeIn === "") {
-      return setErrorMessage("Please enter time in.");
+    const period = hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12;
+
+    if (hours === 0) {
+      hours = 12;
+    }
+
+    const formattedHours = String(hours).padStart(2, "0");
+    const formattedMinutes = String(minutes).padStart(2, "0");
+
+    return `${formattedHours}:${formattedMinutes} ${period}`;
+  };
+
+  const getAttendance = () => {
+    if (!empName) {
+      setError("Please enter employee name.");
+      setResult(false);
+      return;
+    }
+
+    if (!timeIn) {
+      setError("Please enter time in.");
+      setResult(false);
+      return;
+    }
+
+    if (timeIn < 0 || timeIn > 24) {
+      setError("Invalid time. Please enter between 0 and 24");
+      setResult(false);
+      return;
     }
 
     const time = Number(timeIn);
 
-    if (time < 0 || time > 24) {
-      return setErrorMessage("Invalid time.");
-    }
+    setError("");
+
+    const convertedTime = convertTime(time);
+    setTimeConvert(convertedTime);
 
     if (time <= 8) {
-      setAttendanceDetails((prev) => ({
-        ...prev,
-        bg: "bg-green-600/20",
-        color: "text-green-500",
-        status: "On Time",
-        result: "Good job!",
-        submittedName: name,
-        submittedTimeIn: timeIn,
-      }));
-      setErrorMessage("");
-      return;
-    }
+      setStatus("On Time");
+      setMessage("Good job!");
 
-    if (8 < time && time <= 9) {
-      setAttendanceDetails((prev) => ({
-        ...prev,
-        bg: "bg-red-700/20",
-        color: "text-red-500",
-        status: "Late",
-        result: "Please be on time tomorrow.",
-        submittedName: name,
-        submittedTimeIn: timeIn,
-      }));
-      setErrorMessage("");
-      return;
-    }
+      setAlertStyle({
+        textColor: "text-green-400",
+        bgColor: "bg-green-700/20",
+        borderColor: "border-green-400",
+      });
+    } else if (time <= 9) {
+      setStatus("Late");
+      setMessage("Please be on time tomorrow.");
 
-    setAttendanceDetails((prev) => ({
-      ...prev,
-      bg: "bg-red-700/20",
-      color: "text-red-500",
-      status: "Very Late",
-      result: "Report to your supervisor.",
-      submittedName: name,
-      submittedTimeIn: timeIn,
-    }));
-    setErrorMessage("");
+      setAlertStyle({
+        textColor: "text-yellow-400",
+        bgColor: "bg-yellow-700/20",
+        borderColor: "border-yellow-400",
+      });
+    } else {
+      setStatus("Very Late");
+      setMessage("Report to your supervisor.");
+
+      setAlertStyle({
+        textColor: "text-red-400",
+        bgColor: "bg-red-700/20",
+        borderColor: "border-red-400",
+      });
+    }
+    setResultName(empName);
+    setResult(true);
   };
 
   const handleReset = () => {
-    setAttendanceDetails(initialState);
-    setErrorMessage("");
+    setEmpName("");
+    setTimeIn("");
+    setTimeConvert("");
+    setStatus("");
+    setMessage("");
+    setError("");
+    setResult(false);
   };
 
   return (
-    <div className="flex flex-col justify-center items-center gap-6 max-w-xl max-h-full mx-auto p-4">
+    <div className="mt-10 p-4 md:p-12 h-full flex flex-col justify-between mx-auto w-full max-w-6xl sm:p-8 gap-4 rounded-xl sm:rounded-5xl bg-gray-800 border-t-teal-400 border-t-4">
       <PunchClockTwoToneIcon
-        className="text-teal-400 bg-teal-900 border border-teal-400 p-5 rounded-full "
+        className="text-teal-400 bg-teal-900 border border-teal-400 p-5 rounded-full mx-auto"
         sx={{ fontSize: 80 }}
       />
-      <h1 className="text-2xl md:text-4xl text-center font-bold text-white ">
+
+      <h1 className="text-2xl md:text-3xl text-center font-bold text-white">
         Employee Attendance Tracker
       </h1>
+
       <p className="text-gray-400">
         Enter employee details to check attendance
       </p>
 
-      <form
-        onSubmit={getResult}
-        className="flex flex-col justify-between mx-auto w-full max-w-6xl p-6 sm:p-8 gap-4 rounded-xl sm:rounded-5xl bg-gray-800 border-t-teal-400 border-t-4"
-      >
-        <label htmlFor="empName" className="flex text-white font-semibold">
-          <Person2OutlinedIcon />
-          Employee Name
-        </label>
-        <input
-          type="text"
-          placeholder="Enter employee name"
-          className="h-12 text-white"
-          value={attendanceDetails.name}
-          onChange={(e) => handleChange("name", e.target.value)}
-        />
-        <label htmlFor="timeIn" className="flex text-white font-semibold">
-          <PunchClockTwoToneIcon />
-          Time In
-        </label>
-        <input
-          type="number"
-          placeholder="E.g., 9 = 9:00 AM"
-          className="h-12 text-white"
-          value={attendanceDetails.timeIn}
-          onChange={(e) => handleChange("timeIn", e.target.value)}
-        />
-        {errorMessage && (
-          <div className="bg-red-500/20 border border-red-500 p-3 rounded text-red-500">
-            {errorMessage}
-          </div>
-        )}
-        <div className="flex flex-col md:flex-row justify-evenly items-center gap-2">
-          <button
-            type="submit"
-            className="flex justify-center items-center gap-2 w-full h-12 whitespace-nowrap rounded-md px-2 py-2 text-md lg:px-4 bg-teal-400  text-gray-900 text-sm md:text-md transition ease-linear hover:text-white hover:bg-teal-800 shadow-md shadow-teal-900  active:text-white  active:bg-teal-800 active:shadow-teal-900"
-          >
-            <CheckCircleOutlinedIcon />
-            Check Attendance
-          </button>
-          <button
-            type="reset"
-            onClick={handleReset}
-            className="flex justify-center items-center gap-2 w-full h-12 whitespace-nowrap rounded-md px-2 py-2 text-md lg:px-4 text-white border border-gray-500 shadow-md transition ease-linear hover:text-red-500 hover:border-red-500 hover:bg-red-600/10 hover:shadow-red-900 active:text-red-500 active:border-red-500 active:bg-red-600/10 active:shadow-red-900"
-          >
-            <RestartAltOutlinedIcon />
-            Reset
-          </button>
+      <label htmlFor="empName" className="flex text-white font-semibold">
+        <Person2OutlinedIcon />
+        Employee Name
+      </label>
+
+      <input
+        id="empName"
+        type="text"
+        placeholder="Enter employee name"
+        className="h-12 text-white border border-gray-500 rounded-md px-3
+             focus:border-2  focus:border-teal-400 focus:outline-none transition-all duration-200 ease-in"
+        value={empName}
+        onChange={(e) => setEmpName(e.target.value)}
+      />
+
+      <label htmlFor="timeIn" className="flex text-white font-semibold">
+        <PunchClockTwoToneIcon />
+        Time In
+      </label>
+
+      <input
+        id="timeIn"
+        type="number"
+        step="0.01"
+        placeholder="E.g., 8.5 = 8:30 AM"
+        className="h-12 text-white border border-gray-500 rounded-md px-3
+             focus:border-2
+  focus:border-teal-400
+  focus:outline-none  transition-all duration-200 ease-in"
+        value={timeIn}
+        onChange={(e) => setTimeIn(e.target.value)}
+      />
+
+      <div className="flex flex-col md:flex-row justify-evenly items-center gap-2">
+        <button
+          onClick={getAttendance}
+          className="flex justify-center items-center gap-2 w-full h-12 whitespace-nowrap rounded-md px-2 py-2 text-md lg:px-4 bg-teal-400 text-gray-900 text-sm md:text-md hover:text-white hover:bg-teal-800 shadow-md shadow-teal-900 transition ease-linear"
+        >
+          <CheckCircleOutlinedIcon />
+          Check Attendance
+        </button>
+
+        <button
+          type="button"
+          onClick={handleReset}
+          className="flex justify-center items-center gap-2 w-full h-12 whitespace-nowrap rounded-md px-2 py-2 text-md lg:px-4 text-white border-gray-500 border hover:text-red-400 hover:border-red-400 hover:bg-red-700/10 shadow-md hover:shadow-red-900 transition ease-linear"
+        >
+          <RestartAltOutlinedIcon />
+          Reset
+        </button>
+      </div>
+
+      {error && (
+        <div className="mb-5 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-400">
+          {error}
         </div>
+      )}
 
-        {attendanceDetails.result && (
-          <div
-            className={`flex flex-col gap-3 p-4 border rounded-xl ${attendanceDetails.bg} ${attendanceDetails.color}`}
-          >
-            <p className="text-sm">Employee Name</p>
-            <p className="font-bold">{attendanceDetails.submittedName}</p>
+      {result && (
+        <div
+          className={`flex flex-col gap-3 rounded-lg border ${alertStyle.borderColor} ${alertStyle.bgColor} ${alertStyle.textColor} p-3`}
+        >
+          <p>
+            Employee Name: <strong>{resultName}</strong>
+          </p>
+          <p>
+            Time In: <strong>{timeConvert}</strong>
+          </p>
 
-            <p className="text-sm">Time In</p>
-            <p className="font-bold">
-              {formatTimeIn(attendanceDetails.submittedTimeIn)}
-            </p>
+          <p>Attendance Status</p>
+          <h3 className="text-2xl font-black tracking-wide">{status}</h3>
 
-            {attendanceDetails.status && (
-              <div className="flex flex-col gap-1">
-                <p className="text-sm">Attendance Status</p>
-                <h3 className="font-black text-2xl">
-                  {attendanceDetails.status}
-                </h3>
-                <p className="text-sm font-bold">{attendanceDetails.result}</p>
-              </div>
-            )}
-          </div>
-        )}
-      </form>
+          <p>{message}</p>
+        </div>
+      )}
     </div>
   );
 }
