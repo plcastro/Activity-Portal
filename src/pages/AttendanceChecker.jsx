@@ -31,11 +31,9 @@ export default function AttendanceChecker() {
     if (hours === 0) {
       hours = 12;
     }
-
-    const formattedHours = String(hours).padStart(2, "0");
     const formattedMinutes = String(minutes).padStart(2, "0");
 
-    return `${formattedHours}:${formattedMinutes} ${period}`;
+    return `${hours}:${formattedMinutes} ${period}`;
   };
 
   const getAttendance = () => {
