@@ -3,12 +3,12 @@ import "../App.css";
 import Card from "../components/Card";
 export default function Home() {
   return (
-    <div className="mx-auto w-full max-h-screen py-8">
-      <header className="flex flex-col justify-center items-center p-1 gap-4">
-        <h1 className="text-2xl md:text-5xl font-black text-center uppercase text-teal-400 tracking-wide leading-tight">
+    <div className="flex flex-col mt-10 sm:mt-30 justify-center items-center ">
+      <header className="gap-4">
+        <h1 className="text-3xl md:text-5xl font-black text-center uppercase text-teal-400 tracking-wide leading-tight">
           React Activity Portal
         </h1>
-        <p className="text-center text-gray-400">
+        <p className="text-center text-gray-400 ">
           Three interactive React activities demonstrating state, events,
           conditional logic, validation, and calculations.
         </p>
