@@ -24,10 +24,6 @@ export default function AttendanceChecker() {
     let hours = Math.floor(time);
     let minutes = Math.round((time - hours) * 60);
 
-    if (hours === 24) {
-      hours = 0;
-    }
-
     const period = hours >= 12 ? "PM" : "AM";
 
     hours = hours % 12;
@@ -56,7 +52,7 @@ export default function AttendanceChecker() {
     }
 
     if (timeIn < 0 || timeIn > 24) {
-      setError("Invalid time. Please enter between 0 and 24");
+      setError("Invalid time.");
       setResult(false);
       return;
     }
@@ -111,11 +107,11 @@ export default function AttendanceChecker() {
   }
 
   return (
-    <div className="md:p-0 p-2">
-      <div className="mt-10 p-4 sm:p-8 md:p-12 h-full flex flex-col justify-between mx-auto w-full max-w-6xl gap-4 rounded-xl sm:rounded-5xl bg-gray-800 border-t-teal-400 border-t-4">
+    <div className="sm:p-0 p-5">
+      <div className="mt-10 mb-10 p-4 sm:p-8 md:p-12 h-full flex flex-col justify-between mx-auto w-full max-w-6xl gap-4 rounded-xl sm:rounded-5xl bg-gray-800 border-t-teal-400 border-t-4">
         <PunchClockTwoToneIcon
-          className="text-teal-400 bg-teal-900 border border-teal-400 p-5 rounded-full mx-auto"
-          sx={{ fontSize: 80 }}
+          className="text-teal-400 bg-teal-900 border border-teal-400 p-3 md:p-5  rounded-full mx-auto"
+          sx={{ fontSize: { xs: 70, sm: 100 } }}
         />
 
         <h1 className="text-2xl md:text-3xl text-center font-bold text-white">
