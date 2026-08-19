@@ -12,7 +12,7 @@ function Card({ num, title, subtitle, subtitle2, page }) {
       <p className="text-gray-300 mb-4">{subtitle}</p>
       <Link
         to={page}
-        className="w-full font-bold py-2 px-4 rounded text-center bg-teal-500 text-gray-900 hover:bg-teal-600 hover:text-white  shadow-md shadow-teal-900 transition ease-linear "
+        className="w-full font-bold py-2 px-4 rounded text-center bg-teal-500 text-gray-900 hover:bg-teal-600 hover:text-white shadow-md shadow-teal-900 transition ease-linear "
       >
         Open Activity
       </Link>

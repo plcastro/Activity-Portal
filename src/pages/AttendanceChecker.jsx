@@ -107,8 +107,8 @@ export default function AttendanceChecker() {
   }
 
   return (
-    <div className="sm:p-0 p-5">
-      <div className="mt-10 mb-10 p-4 sm:p-8 md:p-12 h-full flex flex-col justify-between mx-auto w-full max-w-6xl gap-4 rounded-xl sm:rounded-5xl bg-gray-800 border-t-teal-400 border-t-4">
+    <div className="sm:p-0 p-3">
+      <div className="mt-10 mb-10 p-4 sm:p-8 md:p-12 h-full flex flex-col justify-between mx-auto w-full max-w-6xl gap-4 rounded-xl sm:rounded-5xl bg-gray-800 border-t-teal-400 border-t-4 shadow-md shadow-gray-950">
         <PunchClockTwoToneIcon
           className="text-teal-400 bg-teal-900 border border-teal-400 p-3 md:p-5  rounded-full mx-auto"
           sx={{ fontSize: { xs: 70, sm: 100 } }}
