@@ -8,7 +8,7 @@ function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 border-b border-slate-700 bg-gray-900/90 shadow-sm backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between py-10 px-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between py-3 px-6">
         <p className="whitespace-nowrap text-base font-bold text-white lg:text-xl ">
           <span className="p-2 rounded bg-teal-500 text-gray-900 ">React</span>{" "}
           Activity Portal
@@ -27,30 +27,6 @@ function Navbar() {
               Home
             </Link>
           </li>
-          {/* <li>
-            <Link
-              to="/login"
-              className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
-                location.pathname === "/login"
-                   ? "bg-teal-500 text-gray-900"
-                  : "text-slate-400"
-              }`}
-            >
-              Activity 1
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/gradeEval"
-              className={`block whitespace-nowrap rounded-md px-2 py-2 text-xs transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
-                location.pathname === "/gradeEval"
-                   ? "bg-teal-500 text-gray-900"
-                  : "text-slate-400"
-              }`}
-            >
-              Activity 2
-            </Link>
-          </li> */}
           <li>
             <Link
               to="/passChecker"
@@ -124,32 +100,6 @@ function Navbar() {
               Home
             </Link>
           </li>
-          {/* <li>
-            <Link
-              to="/login"
-              className={`block whitespace-nowrap rounded-md px-2 py-2 transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
-                location.pathname === "/login"
-                   ? "bg-teal-500 text-gray-900"
-                  : "text-slate-400"
-              }`}
-              onClick={() => setIsOpen(false)}
-            >
-              Activity 1
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/gradeEval"
-              className={`block whitespace-nowrap rounded-md px-2 py-2 transition hover:bg-gray-800 hover:text-teal-400 lg:px-4  ${
-                location.pathname === "/gradeEval"
-                   ? "bg-teal-500 text-gray-900"
-                  : "text-slate-400"
-              }`}
-              onClick={() => setIsOpen(false)}
-            >
-              Activity 2
-            </Link>
-          </li> */}
           <li>
             <Link
               to="/passChecker"
