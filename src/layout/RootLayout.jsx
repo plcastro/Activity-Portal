@@ -6,7 +6,7 @@ export default function RootLayout() {
     <div className="min-h-screen bg-slate-900 flex flex-col">
       <Navbar />
 
-      <div className="max-w-6xl mx-auto lex justify-center items-center">
+      <div className="max-w-6xl mx-auto flex justify-center items-center">
         <Outlet />
       </div>
     </div>
