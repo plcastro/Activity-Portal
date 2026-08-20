@@ -2,14 +2,12 @@ import { useState } from "react";
 
 export default function ElectricityBill() {
   const [name, setName] = useState("");
-  const [previousReading, setPreviousReading] = useState("");
-  const [currentReading, setCurrentReading] = useState("");
+  const [consumption, setConsumption] = useState("");
   const [bill, setBill] = useState(null);
   const [error, setError] = useState("");
 
   function calculateBill() {
-    const previous = Number(previousReading);
-    const current = Number(currentReading);
+    const usage = Number(consumption);
 
     if (name.trim() === "") {
       setError("Please enter the customer's name.");
@@ -17,56 +15,50 @@ export default function ElectricityBill() {
       return;
     }
 
-    if (previousReading === "" || currentReading === "") {
-      setError("Please enter both meter readings.");
+    if (consumption === "") {
+      setError("Please enter the electricity consumption.");
       setBill(null);
       return;
     }
 
-    if (previous < 0 || current < 0) {
-      setError("Meter readings cannot be negative.");
+    if (usage < 0) {
+      setError("Consumption cannot be negative.");
       setBill(null);
       return;
     }
 
-    if (current < previous) {
-      setError("Current reading cannot be lower than previous reading.");
-      setBill(null);
-      return;
-    }
-
-    const consumption = current - previous;
     let rate;
 
-    if (consumption <= 100) {
+    if (usage <= 100) {
       rate = 10;
-    } else if (consumption <= 200) {
+    } else if (usage <= 200) {
       rate = 12;
-    } else if (consumption <= 300) {
+    } else if (usage <= 300) {
       rate = 15;
     } else {
       rate = 18;
     }
 
-    const total = consumption * rate;
-    const usage = total >= 5000
-      ? "High Electricity Usage"
-      : "Normal Electricity Usage";
+    const total = usage * rate;
+
+    const usageStatus =
+      total >= 5000
+        ? "High Electricity Usage"
+        : "Normal Electricity Usage";
 
     setError("");
 
     setBill({
-      consumption,
+      usage,
       rate,
       total,
-      usage,
+      usageStatus,
     });
   }
 
   function clearForm() {
     setName("");
-    setPreviousReading("");
-    setCurrentReading("");
+    setConsumption("");
     setBill(null);
     setError("");
   }
@@ -80,7 +72,7 @@ export default function ElectricityBill() {
           </h1>
 
           <p className="mt-2 text-gray-400">
-            Calculate your estimated electricity bill
+            Calculate your electricity bill
           </p>
         </div>
 
@@ -98,44 +90,18 @@ export default function ElectricityBill() {
           />
         </div>
 
-        <div className="mb-4">
-          <label className="mb-2 block font-semibold text-gray-200">
-            Previous Meter Reading
-          </label>
-
-          <input
-            type="text"
-            inputMode="decimal"
-            value={previousReading}
-            onChange={(e) => {
-              const value = e.target.value;
-
-              if (/^\d*\.?\d{0,2}$/.test(value)) {
-                setPreviousReading(value);
-              }
-            }}
-            placeholder="Enter previous reading"
-            className="w-full rounded-lg border border-slate-600 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-teal-500"
-          />
-        </div>
-
         <div className="mb-5">
           <label className="mb-2 block font-semibold text-gray-200">
-            Current Meter Reading
+            Consumption (kWh)
           </label>
 
           <input
-            type="text"
-            inputMode="decimal"
-            value={currentReading}
-            onChange={(e) => {
-              const value = e.target.value;
-
-              if (/^\d*\.?\d{0,2}$/.test(value)) {
-                setCurrentReading(value);
-              }
-            }}
-            placeholder="Enter current reading"
+            type="number"
+            min="0"
+            step="0.01"
+            value={consumption}
+            onChange={(e) => setConsumption(e.target.value)}
+            placeholder="Enter consumption"
             className="w-full rounded-lg border border-slate-600 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-teal-500"
           />
         </div>
@@ -168,50 +134,30 @@ export default function ElectricityBill() {
               Bill Summary
             </h2>
 
-            <div className="mb-4 rounded-lg bg-slate-800 p-4">
-              <p className="text-sm text-gray-400">
-                Customer
-              </p>
-
-              <p className="text-lg font-bold text-white">
-                {name}
-              </p>
-            </div>
-
             <div className="space-y-3">
               <div className="flex justify-between border-b border-slate-700 pb-3">
                 <span className="text-gray-400">
-                  Previous Reading
+                  Customer Name
                 </span>
 
                 <span className="font-semibold text-white">
-                  {previousReading} kWh
+                  {name}
                 </span>
               </div>
 
               <div className="flex justify-between border-b border-slate-700 pb-3">
                 <span className="text-gray-400">
-                  Current Reading
+                  Consumption
                 </span>
 
                 <span className="font-semibold text-white">
-                  {currentReading} kWh
+                  {bill.usage} kWh
                 </span>
               </div>
 
               <div className="flex justify-between border-b border-slate-700 pb-3">
                 <span className="text-gray-400">
-                  Electricity Consumed
-                </span>
-
-                <span className="font-semibold text-white">
-                  {bill.consumption.toFixed(2)} kWh
-                </span>
-              </div>
-
-              <div className="flex justify-between border-b border-slate-700 pb-3">
-                <span className="text-gray-400">
-                  Rate
+                  Rate Applied
                 </span>
 
                 <span className="font-semibold text-white">
@@ -220,6 +166,16 @@ export default function ElectricityBill() {
               </div>
 
               <div className="flex justify-between border-b border-slate-700 pb-3">
+                <span className="text-gray-400">
+                  Total Bill
+                </span>
+
+                <span className="text-xl font-bold text-teal-400">
+                  ₱{bill.total.toFixed(2)}
+                </span>
+              </div>
+
+              <div className="flex justify-between gap-6 pt-2">
                 <span className="text-gray-400">
                   Usage Status
                 </span>
@@ -231,17 +187,7 @@ export default function ElectricityBill() {
                       : "font-bold text-teal-400"
                   }
                 >
-                  {bill.usage}
-                </span>
-              </div>
-
-              <div className="flex justify-between pt-2">
-                <span className="text-lg font-bold text-gray-200">
-                  Total Bill
-                </span>
-
-                <span className="text-2xl font-bold text-teal-400">
-                  ₱{bill.total.toFixed(2)}
+                  {bill.usageStatus}
                 </span>
               </div>
             </div>
