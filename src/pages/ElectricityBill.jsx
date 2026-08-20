@@ -1,4 +1,7 @@
 import { useState } from "react";
+import ElectricBoltTwoToneIcon from "@mui/icons-material/ElectricBoltTwoTone";
+import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
+import RestartAltOutlinedIcon from "@mui/icons-material/RestartAltOutlined";
 
 export default function ElectricityBill() {
   const [name, setName] = useState("");
@@ -42,9 +45,7 @@ export default function ElectricityBill() {
     const total = usage * rate;
 
     const usageStatus =
-      total >= 5000
-        ? "High Electricity Usage"
-        : "Normal Electricity Usage";
+      total >= 5000 ? "High Electricity Usage" : "Normal Electricity Usage";
 
     setError("");
 
@@ -64,15 +65,17 @@ export default function ElectricityBill() {
   }
 
   return (
-    <div className="flex min-h-[calc(100vh-80px)] justify-center px-4 py-10">
-      <div className="w-full max-w-lg rounded-xl border border-slate-700 bg-gray-800 p-6 shadow-lg">
+    <div className="sm:p-0 p-3">
+      <div className="mt-10 mb-10 p-4 sm:p-8 md:p-12 h-full flex flex-col justify-between mx-auto w-full max-w-6xl gap-4 rounded-xl sm:rounded-5xl bg-gray-800 border-t-teal-400 border-t-4 shadow-md shadow-gray-950">
         <div className="mb-6 text-center">
-          <h1 className="text-3xl font-bold text-white">
-            Electricity Bill
-          </h1>
+          <ElectricBoltTwoToneIcon
+            className="text-teal-400 bg-teal-900 border border-teal-400 p-3 md:p-5  rounded-full mx-auto mb-4"
+            sx={{ fontSize: { xs: 70, sm: 100 } }}
+          />
+          <h1 className="text-3xl font-bold text-white">Electricity Bill</h1>
 
           <p className="mt-2 text-gray-400">
-            Calculate your electricity bill
+            Calculate your estimated electricity bill
           </p>
         </div>
 
@@ -115,15 +118,18 @@ export default function ElectricityBill() {
         <div className="flex gap-3">
           <button
             onClick={calculateBill}
-            className="flex-1 rounded-lg bg-teal-500 px-4 py-3 font-bold text-gray-900 transition hover:bg-teal-600 hover:text-white"
+            className="flex justify-center items-center gap-2 w-full h-12 whitespace-nowrap rounded-md px-2 py-2 text-md lg:px-4 bg-teal-400 text-gray-900 text-sm md:text-md hover:text-white hover:bg-teal-800 shadow-md shadow-teal-900 transition ease-linear"
           >
+            <CheckCircleOutlinedIcon />
             Calculate Bill
           </button>
 
           <button
+            type="reset"
             onClick={clearForm}
-            className="rounded-lg border border-slate-600 px-5 py-3 font-bold text-gray-300 transition hover:bg-slate-700 hover:text-white"
+            className="flex justify-center items-center gap-2 w-full h-12 whitespace-nowrap rounded-md px-2 py-2 text-md lg:px-4 text-white border-gray-500 border hover:text-red-400 hover:border-red-400 hover:bg-red-700/10 shadow-md hover:shadow-red-900 transition ease-linear"
           >
+            <RestartAltOutlinedIcon />
             Clear
           </button>
         </div>
@@ -136,19 +142,13 @@ export default function ElectricityBill() {
 
             <div className="space-y-3">
               <div className="flex justify-between border-b border-slate-700 pb-3">
-                <span className="text-gray-400">
-                  Customer Name
-                </span>
+                <span className="text-gray-400">Customer Name</span>
 
-                <span className="font-semibold text-white">
-                  {name}
-                </span>
+                <span className="font-semibold text-white">{name}</span>
               </div>
 
               <div className="flex justify-between border-b border-slate-700 pb-3">
-                <span className="text-gray-400">
-                  Consumption
-                </span>
+                <span className="text-gray-400">Consumption</span>
 
                 <span className="font-semibold text-white">
                   {bill.usage} kWh
@@ -156,9 +156,7 @@ export default function ElectricityBill() {
               </div>
 
               <div className="flex justify-between border-b border-slate-700 pb-3">
-                <span className="text-gray-400">
-                  Rate Applied
-                </span>
+                <span className="text-gray-400">Rate Applied</span>
 
                 <span className="font-semibold text-white">
                   ₱{bill.rate.toFixed(2)} / kWh
@@ -166,9 +164,7 @@ export default function ElectricityBill() {
               </div>
 
               <div className="flex justify-between border-b border-slate-700 pb-3">
-                <span className="text-gray-400">
-                  Total Bill
-                </span>
+                <span className="text-gray-400">Total Bill</span>
 
                 <span className="text-xl font-bold text-teal-400">
                   ₱{bill.total.toFixed(2)}
@@ -176,9 +172,7 @@ export default function ElectricityBill() {
               </div>
 
               <div className="flex justify-between gap-6 pt-2">
-                <span className="text-gray-400">
-                  Usage Status
-                </span>
+                <span className="text-gray-400">Usage Status</span>
 
                 <span
                   className={
