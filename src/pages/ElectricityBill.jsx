@@ -89,7 +89,7 @@ export default function ElectricityBill() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter customer name"
-            className="w-full rounded-lg border border-slate-600 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-teal-500"
+            className="h-12 w-full text-white border border-gray-500 rounded-md px-3 focus:border-2 focus:border-teal-400  focus:outline-none  transition-all duration-200 ease-in"
           />
         </div>
 
@@ -105,7 +105,7 @@ export default function ElectricityBill() {
             value={consumption}
             onChange={(e) => setConsumption(e.target.value)}
             placeholder="Enter consumption"
-            className="w-full rounded-lg border border-slate-600 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-teal-500"
+            className="h-12 w-full text-white border border-gray-500 rounded-md px-3 focus:border-2 focus:border-teal-400  focus:outline-none  transition-all duration-200 ease-in"
           />
         </div>
 

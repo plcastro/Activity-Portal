@@ -44,32 +44,36 @@ export default function PasswordChecker() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center gap-6 max-w-xl max-h-full mx-auto p-4">
-      <LockOutlinedIcon
-        className="text-teal-400 bg-teal-900 border border-teal-400 p-5 rounded-full "
-        sx={{ fontSize: 80 }}
-      />
-      <h1 className="text-2xl md:text-4xl text-center font-bold text-white ">
-        Password Strength Checker
-      </h1>
-      <p className="text-gray-400">
-        Enter a password to check its strength
-      </p>
+    <div className="flex flex-col justify-center items-center gap-6 max-w-xl max-h-full mx-auto">
       <form
         onSubmit={handleCheckPassword}
-        className="flex flex-col justify-between mx-auto w-full max-w-6xl p-6 sm:p-8 gap-4 rounded-xl sm:rounded-5xl bg-gray-800 border-t-teal-400 border-t-4"
+        className="mt-10 p-4 sm:p-8 md:p-12 h-full flex flex-col justify-between mx-auto w-full max-w-6xl gap-4 rounded-xl sm:rounded-5xl bg-gray-800 border-t-teal-400 border-t-4 shadow-md shadow-gray-950"
       >
-        <label htmlFor="password" className="flex text-white font-semibold">
+        <div className="flex flex-col items-center gap-4">
+          <LockOutlinedIcon
+            className="text-teal-400 bg-teal-900 border border-teal-400 p-5 rounded-full "
+            sx={{ fontSize: { xs: 70, sm: 100 } }}
+          />
+          <h1 className="text-2xl md:text-4xl text-center font-bold text-white ">
+            Password Strength Checker
+          </h1>
+          <p className="text-gray-400">
+            Enter a password to check its strength
+          </p>
+        </div>
+        <label
+          htmlFor="password"
+          className="flex text-white font-semibold gap-1"
+        >
           <VpnKeyOutlinedIcon />
           Password
         </label>
         <input
-          id="password"
           type="password"
           placeholder="Enter your password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="h-12 text-white"
+          className="h-12 text-white border border-gray-500 rounded-md px-3 focus:border-2  focus:border-teal-400  focus:outline-none  transition-all duration-200 ease-in"
         />
 
         {error && (
@@ -98,7 +102,7 @@ export default function PasswordChecker() {
       </form>
 
       {result && (
-        <div className="w-full max-w-6xl rounded-xl sm:rounded-5xl bg-gray-800 border-t-teal-400 border-t-4 p-6 sm:p-8">
+        <div className="w-full max-w-6xl mb-10 rounded-xl sm:rounded-5xl bg-gray-800 border-t-teal-400 border-t-4 p-6 sm:p-8">
           <div className="flex justify-between border-b border-gray-700 pb-3 mb-3">
             <span className="text-gray-400">Password Status</span>
             <span
@@ -107,8 +111,8 @@ export default function PasswordChecker() {
                 (result.strength === "Strong"
                   ? "text-teal-400"
                   : result.strength === "Medium"
-                  ? "text-yellow-400"
-                  : "text-red-400")
+                    ? "text-yellow-400"
+                    : "text-red-400")
               }
             >
               {result.strength}
